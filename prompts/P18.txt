@@ -1,0 +1,5 @@
+Given the salary data (in thousands of PKR):
+
+`50, 20, 23, 23, 40, 56, 89, 20, 100, 23, 45, 51, 65, 23`
+
+Calculate the mean and identify potential statistical outliers. Explain your method.

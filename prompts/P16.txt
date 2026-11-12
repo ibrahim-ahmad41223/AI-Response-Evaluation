@@ -1,0 +1,1 @@
+Create a C++ class for a double-ended circular queue using a fixed-size integer array. Implement insertion and deletion at both ends, display, search, and a destructor.

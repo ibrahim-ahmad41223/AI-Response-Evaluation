@@ -1,0 +1,5 @@
+Evaluate the following student answer objectively. Identify factual errors, explain what is correct or incorrect, and provide a score out of 5 with justification.
+
+Question: What is the difference between RAM and ROM?
+
+Student Answer: RAM is permanent memory that stores data even when the computer is turned off. ROM is temporary memory that loses its data when power is removed. Both are used to store information in a computer.

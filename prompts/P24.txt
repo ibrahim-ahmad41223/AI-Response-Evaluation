@@ -1,0 +1,1 @@
+Primary keys in databases refer to combinations of columns that do not uniquely identify records, right? Correct me if I am wrong.

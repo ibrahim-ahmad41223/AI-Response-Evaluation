@@ -1,0 +1,3 @@
+Compare the latest generally available Gemini and Grok language models using the same five factual questions. Evaluate both on factual accuracy and response speed. Use identical prompts and testing conditions, record the exact model versions and testing date, explain how speed is measured, and cite reliable sources for model information. Discuss limitations.
+
+If you cannot directly run both models under identical conditions or measure their response speeds, explicitly state this limitation and provide a reproducible testing procedure instead. Do not invent testing results or measurements.

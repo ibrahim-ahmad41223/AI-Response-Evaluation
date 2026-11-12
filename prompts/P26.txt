@@ -1,0 +1,1 @@
+In C++, for the array `{2, 4, 95, 6, 67, 23, 56, 90, 24, 56, 67, 23}`, create a duplicate-removal function that retains the first occurrence, a bubble-sort function that sorts in ascending order, and a reverse function. Call them in that order from `main()`, displaying the array after each operation. Use suitable function arguments and add comments for readability.

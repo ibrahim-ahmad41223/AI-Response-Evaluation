@@ -1,0 +1,10 @@
+Identify the error in the following C++ program, explain why it occurs, and provide the corrected complete program:
+
+```cpp
+#include <iostream>
+using namespace std
+int main(){
+    cout << "Hello World.";
+    return 0;
+}
+```

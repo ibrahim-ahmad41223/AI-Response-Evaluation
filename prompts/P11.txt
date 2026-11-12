@@ -1,0 +1,1 @@
+Given an existing MySQL table named `Student(id, name, rollNo, CGPA)`, write one query to insert `(1, 'Ibrahim', 123, 3.45)` and another query to display all records.

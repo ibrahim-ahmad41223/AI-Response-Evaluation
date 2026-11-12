@@ -1,0 +1,1 @@
+Explain how API keys work in exactly two bullet points. Use beginner-friendly language.

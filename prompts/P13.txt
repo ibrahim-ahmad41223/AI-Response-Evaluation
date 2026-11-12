@@ -1,0 +1,1 @@
+Calculate `7! × 389 − 213`. Show your calculation and final answer.

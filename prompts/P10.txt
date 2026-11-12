@@ -1,0 +1,5 @@
+Summarize the following passage in no more than 50 words. Preserve its main argument and important supporting details. Do not introduce information that is not present in the passage.
+
+Passage:
+
+Artificial intelligence is increasingly being used in education. It can help students understand difficult concepts, provide personalized learning experiences, and automate repetitive tasks for teachers. However, excessive dependence on AI may reduce students' critical thinking abilities and create concerns about privacy and academic honesty. Therefore, educational institutions should encourage responsible AI use while ensuring that students continue developing independent thinking skills.

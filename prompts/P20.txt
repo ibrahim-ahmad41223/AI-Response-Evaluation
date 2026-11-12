@@ -1,0 +1,17 @@
+Based on the following standardized summary of previous conversations, evaluate my understanding of computer science.
+
+Use only evidence from the summary. Identify both strengths and weaknesses, and avoid making unsupported assumptions.
+
+Context summary:
+
+The student is a third-semester Software Engineering undergraduate who has discussed the following topics in previous conversations:
+
+- C++ programming, including arrays, functions, recursion, linked lists, stacks, queues, and sorting algorithms.
+- Data structures and algorithms, including array manipulation, linked-list operations, postfix expression evaluation, and basic time complexity.
+- Database systems, including SQL queries, joins, grouping, aggregate functions, relational algebra, tuple relational calculus, domain relational calculus, and ER diagrams.
+- Software engineering concepts, including requirements engineering, elicitation, stakeholders, process models, Scrum, XP, and UML diagrams.
+- Digital logic design, including Boolean algebra, logic gates, number systems, Karnaugh maps, and simplification of Boolean expressions.
+
+The student has frequently asked for step-by-step explanations, examples, dry runs, and clarification of concepts they find difficult. They have also practiced solving programming and database questions and requested feedback on their answers.
+
+Evaluate their demonstrated understanding based only on this information. Clearly distinguish between evidence of familiarity with a topic and evidence of mastery. Do not assume that discussing a topic means the student has mastered it.

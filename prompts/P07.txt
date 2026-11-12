@@ -1,0 +1,1 @@
+Write a C++ program that accepts an integer from 1–7 and uses a switch statement to display the corresponding weekday (1 = Monday, 7 = Sunday). Display an error for invalid input.

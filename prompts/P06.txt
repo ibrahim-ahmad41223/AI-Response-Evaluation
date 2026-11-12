@@ -1,0 +1,1 @@
+In C, when the left operand of the logical OR operator (`||`) evaluates to true, is the right operand evaluated? Explain why.

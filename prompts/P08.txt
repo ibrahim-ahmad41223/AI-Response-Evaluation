@@ -1,0 +1,1 @@
+Write a poem with exactly three stanzas. Include the exact words **plum** and **sum** at least once each, and bold every occurrence of these exact words.
