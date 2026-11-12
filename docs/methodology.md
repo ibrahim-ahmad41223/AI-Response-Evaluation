@@ -12,14 +12,12 @@ Using identical prompts and a single shared rubric allows the responses to be co
 
 Four AI models are included in the benchmark:
 
-| Model | Provider | Exact model/version | Access method | Settings | Date(s) collected |
-|---|---|---|---|---|---|
-| Gemini | Google | _TBD_ | _TBD_ | _TBD_ | _TBD_ |
-| ChatGPT | OpenAI | _TBD_ | _TBD_ | _TBD_ | _TBD_ |
-| Grok | xAI | _TBD_ | _TBD_ | _TBD_ | _TBD_ |
-| Claude | Anthropic | _TBD_ | _TBD_ | _TBD_ | _TBD_ |
-
-> **Note:** The fields marked _TBD_ must be confirmed and filled in before the results are published. Recording the exact model version, access method (for example, a web interface or an API), relevant settings, and the collection date is important because model behaviour can change over time.
+| Provider | Model Version | Access Method | Settings |
+|---|---|---|---|
+| Google Gemini | Gemini 3.6 Flash | Website | All around help |
+| OpenAI ChatGPT | Default model (exact version not disclosed) | Website | Default settings |
+| xAI Grok | Default model (exact version not disclosed) | Website | Fast |
+| Anthropic Claude | Claude Sonnet 5.5 | Website | Low effort |
 
 ## 3. Evaluation Prompts
 
