@@ -1,0 +1,2 @@
+- An API key is like a secret password that an app or website uses to prove it’s allowed to talk to another service (for example, to fetch weather data or process payments).  
+- You include the key in your requests so the service knows who you are and can decide whether to let you in; keep it private so strangers can’t pretend to be you.

@@ -1,0 +1,3 @@
+- **An API key is like a password for a program.** It's a long, unique string of letters and numbers that you get from a service (like a weather app's data provider), and your code includes it when asking that service for something, so the service knows who is making the request.
+
+- **The service uses the key to decide what you're allowed to do.** When your request arrives, the service checks the key to confirm it's valid, track how much you're using it, and apply any limits or permissions tied to your account. Because anyone with your key can act as you, you should keep it secret and never post it publicly.

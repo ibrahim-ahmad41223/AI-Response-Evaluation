@@ -1,0 +1,2 @@
+* **Digital ID Cards:** Think of an API key like a unique VIP pass or password that a website gives your software—every time your app asks that website for data (like checking the current weather), it flashes this key so the website knows exactly who is asking and lets you in.
+* **Control and Security:** Because that key is tied directly to your account, the website uses it to track how much data you are requesting, bill you if you go over free limits, and instantly block access if someone steals your key and starts abusing the system.
