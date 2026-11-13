@@ -1,1 +1,5 @@
 Prompt ID,Provider,Model Version,Access Method,Settings,Collection Date
+P01,xAI Grok,Default model (exact version not disclosed),Website,Fast,2026-11-13
+P01,OpenAI ChatGPT,Default model (exact version not disclosed),Website,Default settings,2026-11-13
+P01,Google Gemini,Gemini 3.6 Flash,Website,All around help,2026-11-13
+P01,Anthropic Claude,Claude Sonnet 5.5,Website,Low effort,2026-11-13
