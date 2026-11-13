@@ -14,7 +14,7 @@ Four AI models are included in the benchmark:
 
 | Provider | Model Version | Access Method | Settings |
 |---|---|---|---|
-| Google Gemini | Gemini 3.6 Flash | Website | All around help |
+| Google Gemini | 4 Hydrogen | Website | Everyday Help |
 | OpenAI ChatGPT | Default model (exact version not disclosed) | Website | Default settings |
 | xAI Grok | Default model (exact version not disclosed) | Website | Fast |
 | Anthropic Claude | Claude Sonnet 5.5 | Website | Low effort |
