@@ -1,0 +1,231 @@
+# **Gemini vs. Grok: factual accuracy and response speed**
+
+**Testing date:** November 13, 2026
+
+There is an important distinction between a genuine benchmark and a comparison based on published specifications. I can research the latest generally available models, establish a fair testing methodology, and provide identical test questions, but I cannot directly submit prompts to both external models under controlled conditions or measure their live response times in this conversation.
+
+Therefore, I will not invent accuracy scores, response times, or a winning model.
+
+## **1. Models selected**
+
+Based on official announcements and documentation available on the testing date:
+
+[Gemini – Google’s AI Assistant for Smart Conversations & Productivity – Daidu.ai](https://images.openai.com/static-rsc-4/ptJvxAnbpHSz9oKwhiZCWU9MTvmPl997rGrZd4wqTgvg18xJPt8X3ASwCANnmkTN4cvnMJqTW5csYg-Wx_SyU_pL6waVf_YLfxdwlsLklzd2H22udrktQ6oVGaeLOvjKRl8y4lJCZGtYV2I-4GwcwBjAGawfKX-wZYbv6TzRORU?purpose=inline)
+
+**Google Gemini 4 Hydrogen**
+
+Generally available
+
+Exact API model ID: `gemini-4-hydrogen`
+
+Google's November 12, 2026 release. Designed for speed and efficient everyday reasoning, and made available across the Gemini app, API, AI Studio and other Google services.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://blog.google\&sz=32)
+
+blog.google+2
+
+
+
+[Grok Logo \[PNG\] | Vector logo, ? logo, Logo archive](https://images.openai.com/static-rsc-4/t7Vy5Pwjkf8QX5Ekyx1O_3sGKOyL2rcxxVQu5hjnm8SKusVnZOz4frf-FGTuk5VFvvD2STIOSraP9gJ0z-tIxBx9u7QjLLn7fbKGKsk58Vhv-B1AvJWy-k-eLhY31Nbfm8lxx213WdHAGoDmT_Ek5WVcExHT3GbXmK24zrhrRRM?purpose=inline)
+
+**xAI Grok 4.7**
+
+API available
+
+Exact API model ID: `grok-4.7`
+
+Released September 21, 2026. xAI describes it as its frontier model for coding, agentic tasks and knowledge work. It supports configurable reasoning levels.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://x.ai\&sz=32)
+
+SpaceXSI+2
+
+
+
+**Why these models?**
+
+Google also offers Gemini 4 Argon and Carbon, which target more demanding reasoning tasks. However, Hydrogen is the more appropriate selection when comparing models intended for broad general availability. Carbon's initial availability was more restricted.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://blog.google\&sz=32)
+
+blog.google+2
+
+
+
+For Grok, 4.7 is the latest model identified in xAI's official model documentation on November 13.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://docs.x.ai\&sz=32)
+
+SpaceXSI Docs+1
+
+
+
+## **2. Five identical factual questions**
+
+These questions test different types of factual knowledge. They have objectively verifiable answers and avoid requiring internet access.
+
+| No. | Identical question for both models                                      | Expected answer |
+| --- | ----------------------------------------------------------------------- | --------------- |
+| 1   | What is the capital city of Australia?                                  | Canberra        |
+| 2   | What is the chemical formula of water?                                  | H₂O             |
+| 3   | What is the speed of light in a vacuum, expressed in metres per second? | 299,792,458 m/s |
+| 4   | In which year did the Berlin Wall fall?                                 | 1989            |
+| 5   | How many bones are typically present in an adult human skeleton?        | 206             |
+
+These five questions cover:
+
+- Geography
+- Chemistry
+- Physics
+- History
+- Biology
+
+**Important:** These are proposed benchmark questions, not questions I have submitted to either model. The expected answers are an answer key, not observed model responses.
+
+## **3. Testing conditions**
+
+A fair comparison should control the following variables.
+
+| Setting         | Gemini                   | Grok                     |
+| --------------- | ------------------------ | ------------------------ |
+| Model           | Gemini 4 Hydrogen        | Grok 4.7                 |
+| API version     | Record exact API version | Record exact API version |
+| Reasoning       | HIGH                     | HIGH                     |
+| Conversation    | New conversation         | New conversation         |
+| Internet search | Disabled                 | Disabled                 |
+| External tools  | Disabled                 | Disabled                 |
+| Prompt          | Identical                | Identical                |
+| Repetitions     | 10 per question          | 10 per question          |
+
+Both models should receive the same system instruction:
+
+**Shared system prompt**
+
+Use this exact instruction for both models.
+
+You are answering a factual knowledge test. Answer each question directly and accurately. Do not use external search tools. If you are uncertain, explicitly state that you are uncertain rather than inventing an answer.
+
+&#x20;Copy system prompt
+
+Each question should be sent separately in a fresh conversation to prevent earlier answers from influencing later ones.
+
+## **4. How response speed should be measured**
+
+Simply recording how quickly a model finishes typing is insufficient. Two measurements are useful:
+
+**A. Time to First Token (TTFT)**
+
+Time between sending the request and receiving the first generated token.
+
+\\[ TTFT = T\_{\text{first token}}-T\_{\text{request}} \\]
+
+This measures how quickly the model begins responding.
+
+**B. Total Response Time**
+
+Time between sending the request and receiving the completed answer.
+
+\\[ T\_{\text{total}}=T\_{\text{completion}}-T\_{\text{request}} \\]
+
+This measures how long the user waits for the complete answer.
+
+Also record output tokens per second:
+
+\\[ TPS=\frac{\text{Output tokens}}{\text{Generation time}} \\]
+
+Use streaming API responses to capture these measurements.
+
+**Recommended procedure:**
+
+1. Use the same computer, internet connection and geographic region.
+2. Send each question to both APIs ten times.
+3. Alternate which model receives each request first to reduce ordering bias.
+4. Use the same reasoning level and disable external tools.
+5. Record TTFT, total response time and output tokens per second.
+6. Calculate the median of the ten measurements for each question.
+7. Calculate the overall median across all 50 responses per model.
+
+This produces a more reliable comparison than timing a single response.
+
+## **5. Factual accuracy scoring**
+
+Each question receives one point for a correct answer and zero for an incorrect answer.
+
+\\[ Accuracy=\frac{\text{Correct answers}}{50}\times100 \\]
+
+The following table is deliberately left unfilled because neither model has been tested here.
+
+| Question                 | Gemini 4 Hydrogen | Grok 4.7   |
+| ------------------------ | ----------------- | ---------- |
+| Geography                | Not tested        | Not tested |
+| Chemistry                | Not tested        | Not tested |
+| Physics                  | Not tested        | Not tested |
+| History                  | Not tested        | Not tested |
+| Biology                  | Not tested        | Not tested |
+| **Overall accuracy**     | **N/A**           | **N/A**    |
+| **Median response time** | **N/A**           | **N/A**    |
+
+No winner can responsibly be declared without actual measurements.
+
+## **6. Reproducible testing procedure**
+
+Both companies provide APIs that allow the models to be selected explicitly.
+
+- Gemini: [Google Gemini API documentation](https://ai.google.dev/gemini-api/docs?utm_source=chatgpt.com).
+- Grok: [xAI Grok 4.7 API documentation](https://docs.x.ai/developers/grok-4-7?utm_source=chatgpt.com).
+
+For reproducibility, use these exact model identifiers:
+
+```
+Gemini: gemini-4-hydrogen
+Grok:   grok-4.7
+```
+
+A Python benchmark can use the following approach:
+
+```
+import timeimport statisticsquestions = [    "What is the capital city of Australia?",    "What is the chemical formula of water?",    "What is the speed of light in a vacuum, expressed in metres per second?",    "In which year did the Berlin Wall fall?",    "How many bones are typically present in an adult human skeleton?"]results = {}# Implement separate Gemini and Grok API clients.# Both should use the same system instruction.for model in ["Gemini", "Grok"]:    results[model] = {}    for question in questions:        times = []        for attempt in range(10):            start = time.perf_counter()            # Send question to selected model using            # its API with streaming enabled.            # Record first-token and completion times.            end = time.perf_counter()            times.append(end - start)        results[model][question] = {            "median_seconds": statistics.median(times)
+```
+
+This is a benchmarking outline, not a completed executable test. The API-specific streaming clients and credentials must be supplied. For accurate TTFT and token-throughput measurements, capture the first-token timestamp and final-token timestamp separately.
+
+## **7. Limitations and considerations**
+
+There are several important limitations to this comparison.
+
+1\. **No direct testing:** I cannot access both external APIs in this conversation to execute the experiment or verify their live response times.
+
+2\. **Knowledge cutoffs:** Google's Gemini 4 Hydrogen model card lists March 2026 as its knowledge cutoff, while xAI's Grok 4.7 documentation lists May 2026. These differences can influence answers to recent factual questions.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://deepmind.google\&sz=32)
+
+Model Card — Google DeepMind+1
+
+
+
+3\. **Network latency:** API response time includes network conditions, server queues and infrastructure overhead, not just model processing time.
+
+4\. **Reasoning differences:** Identical reasoning labels do not necessarily mean identical computational effort.
+
+5\. **Small sample size:** Five questions are suitable for a demonstration but insufficient to establish general factual reliability.
+
+6\. **Benchmark bias:** Both companies publish their own performance evaluations. Their reported results should not be treated as independent head-to-head evidence.
+
+7\. **Model updates:** Even when model identifiers remain unchanged, providers can update their serving infrastructure or model implementations. Record the date, model ID and API response metadata.
+
+## **8. Final assessment**
+
+| Evaluation criterion                      | What can currently be established |
+| ----------------------------------------- | --------------------------------- |
+| Latest broadly available Gemini selection | Gemini 4 Hydrogen                 |
+| Latest Grok selection                     | Grok 4.7                          |
+| Factual accuracy winner                   | Undetermined                      |
+| Response speed winner                     | Undetermined                      |
+| Direct head-to-head testing               | Not performed                     |
+| Reliable conclusion                       | Requires controlled testing       |
+
+**Conclusion:** As of November 13, 2026, Gemini 4 Hydrogen and Grok 4.7 are appropriate models to compare for general factual question-answering. However, available model announcements and specifications cannot establish which is more factually accurate or faster in practice.
+
+A controlled API experiment using the five identical questions, repeated trials and consistent measurement conditions is necessary before declaring a winner.
+
+**Suggested next step:** Run this benchmark with both API keys and collect the 50 responses from each model. I can then help calculate the accuracy percentages, median response times and produce a properly justified comparison.
