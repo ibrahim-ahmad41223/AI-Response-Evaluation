@@ -1,0 +1,11 @@
+I've written `circular_deque.cpp`, a `CircularDeque` class backed by a fixed-size `int` array, with a small `main()` that exercises every operation. I haven't compiled or run it.
+
+- **Storage:** The class allocates the array once with `new int[capacity]` and never resizes it. The `count` member tells a full deque from an empty one, so no array slot is wasted.
+- **Wrap-around:** Indices wrap with modular arithmetic. Inserting at the front moves `front` back by one, and inserting at the rear moves `rear` forward by one.
+- **Insertion and deletion:** `insertFront`, `insertRear`, `deleteFront` and `deleteRear` all run in O(1). They print an overflow or underflow message and return `false` when the deque is full or empty. The deletes return the removed value through a reference parameter.
+- **Extras:** `peekFront`, `peekRear`, `isEmpty`, `isFull` and `size`.
+- **Display:** `display()` prints the elements from front to rear, following the wrap-around.
+- **Search:** `search(value)` returns the 0-based position counted from the front, or `-1` if the value isn't there. It is O(n).
+- **Destructor:** `~CircularDeque()` frees the array with `delete[]`. Copy construction and assignment are deleted, because copying the raw pointer would lead to a double free.
+
+To build and run it: `g++ -std=c++11 circular_deque.cpp -o deque && ./deque`
