@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Response Scorer</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --panel:#fff; --ink:#1b1f24; --muted:#667085; --line:#d9dde3;
+    --accent:#2f5fd0; --accent-ink:#fff; --ok:#1a7f4b; --bad:#c0392b; --warn:#b26a00;
+    --code:#f1f3f6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#14161a; --panel:#1d2026; --ink:#e8eaed; --muted:#9aa3b0; --line:#323843;
+      --accent:#6c93f5; --accent-ink:#0d1117; --ok:#4cc38a; --bad:#ff7b6b; --warn:#e0a040;
+      --code:#262a32;
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  header{display:flex;gap:16px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5}
+  header h1{font-size:16px;margin:0}
+  #progress{color:var(--muted)}
+  #status{margin-left:auto;font-size:13px}
+  #status.ok{color:var(--ok)} #status.err{color:var(--bad);font-weight:600} #status.wait{color:var(--warn)}
+  .bar{height:6px;width:160px;background:var(--line);border-radius:3px;overflow:hidden}
+  .bar>div{height:100%;background:var(--accent);width:0}
+  .layout{display:grid;grid-template-columns:150px minmax(0,1fr) 380px;gap:14px;padding:14px 16px;align-items:start}
+  @media (max-width:1000px){.layout{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:8px}
+  #plist{padding:6px;max-height:calc(100vh - 90px);overflow:auto;position:sticky;top:62px}
+  #plist button{display:flex;justify-content:space-between;width:100%;border:0;background:none;color:var(--ink);padding:5px 8px;border-radius:5px;cursor:pointer;font:inherit}
+  #plist button:hover{background:var(--code)}
+  #plist button.cur{background:var(--accent);color:var(--accent-ink)}
+  #plist .cnt{font-variant-numeric:tabular-nums;opacity:.8}
+  #plist .done .cnt::after{content:" ✓"}
+  .prompt{padding:12px 16px;margin-bottom:12px}
+  .label{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:4px}
+  #prompt-text{white-space:pre-wrap}
+  .tabs{display:flex;gap:6px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+  .tab{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:5px 14px;border-radius:6px;cursor:pointer;font:inherit}
+  .tab.cur{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+  .tab.done::after{content:" ✓"}
+  .spacer{flex:1}
+  .toggle{border:1px solid var(--line);background:none;color:var(--muted);padding:4px 10px;border-radius:6px;cursor:pointer;font:inherit;font-size:13px}
+  .response{padding:14px 18px;min-height:200px;overflow-wrap:anywhere}
+  .response.raw{white-space:pre-wrap;font:13px/1.5 ui-monospace,Consolas,monospace}
+  .response pre{background:var(--code);padding:10px;border-radius:6px;overflow:auto}
+  .response code{background:var(--code);padding:1px 4px;border-radius:4px}
+  .response pre code{background:none;padding:0}
+  .response table{border-collapse:collapse;margin:8px 0}
+  .response th,.response td{border:1px solid var(--line);padding:4px 8px}
+  .response img{max-width:100%}
+  .score{padding:14px;position:sticky;top:62px;max-height:calc(100vh - 80px);overflow:auto}
+  .score h2{margin:0 0 2px;font-size:16px}
+  #reveal{color:var(--muted);font-size:13px;margin-bottom:10px;min-height:20px}
+  #reveal b{color:var(--ink)}
+  .dim{border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin-bottom:8px;cursor:pointer}
+  .dim.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+  .dim .name{font-weight:600;display:flex;justify-content:space-between}
+  .dim .name span{color:var(--muted);font-weight:400;font-size:12px}
+  .btns{display:flex;gap:6px;margin:6px 0 4px}
+  .btns button{flex:1;padding:6px 0;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px;font:inherit;font-weight:600;cursor:pointer}
+  .btns button:hover{border-color:var(--accent)}
+  .btns button.sel{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+  .desc{font-size:13px;color:var(--muted);min-height:20px}
+  textarea{width:100%;min-height:70px;resize:vertical;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:8px;font:inherit}
+  details{margin-top:10px;font-size:13px;color:var(--muted)}
+  details summary{cursor:pointer}
+  details ul{padding-left:18px;margin:6px 0}
+  .keys{margin-top:10px;font-size:12px;color:var(--muted)}
+  kbd{border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 5px;font:12px ui-monospace,Consolas,monospace;background:var(--code)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Response Scorer</h1>
+  <div id="progress">Loading…</div>
+  <div class="bar"><div id="barfill"></div></div>
+  <div id="status" class="wait"></div>
+</header>
+
+<div class="layout">
+  <nav class="card" id="plist" aria-label="Prompts"></nav>
+
+  <main>
+    <div class="card prompt">
+      <div class="label" id="prompt-label"></div>
+      <div id="prompt-text"></div>
+    </div>
+    <div class="tabs" id="tabs"></div>
+    <div class="card response" id="response"></div>
+  </main>
+
+  <aside class="card score">
+    <h2>Score this response</h2>
+    <div id="reveal"></div>
+    <div id="dims"></div>
+    <div class="label">Note (optional)</div>
+    <textarea id="note" placeholder="Why this score? Anything worth remembering for the analysis."></textarea>
+    <details id="principles"><summary>Scoring principles</summary><ul id="plist-principles"></ul></details>
+    <div class="keys">
+      <kbd>1</kbd>–<kbd>5</kbd> score the highlighted dimension &nbsp;
+      <kbd>↑</kbd><kbd>↓</kbd> change dimension &nbsp;
+      <kbd>←</kbd><kbd>→</kbd> previous/next response &nbsp;
+      <kbd>[</kbd><kbd>]</kbd> previous/next prompt &nbsp;
+      <kbd>N</kbd> note (<kbd>Esc</kbd> to leave) &nbsp;
+      <kbd>R</kbd> raw/rendered &nbsp;
+      <kbd>Backspace</kbd> clear score
+    </div>
+  </aside>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js" onerror="window.__noMarked=true"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js" onerror="window.__noPurify=true"></script>
+<script>
+(function(){
+  const DIM_LABELS = {accuracy:"Accuracy", instruction_following:"Instruction-Following", completeness:"Completeness", clarity:"Clarity"};
+  const MODEL_LABELS = {grok:"Grok", chatgpt:"ChatGPT", gemini:"Gemini", claude:"Claude"};
+  let data, scores, pi = 0, ri = 0, di = 0, raw = false;
+  let pending = 0, noteTimer = null;
+
+  const $ = id => document.getElementById(id);
+  const key = (pid, m) => pid + "|" + m;
+  const cur = () => {
+    const p = data.prompts[pi], m = p.order[ri];
+    return {p, m, k: key(p.id, m)};
+  };
+  const entry = k => scores[k] || (scores[k] = {accuracy:null, instruction_following:null, completeness:null, clarity:null, note:""});
+  const isDone = k => scores[k] && data.dims.every(d => scores[k][d]);
+
+  function setStatus(text, cls){ const s = $("status"); s.textContent = text; s.className = cls; }
+
+  function save(k){
+    const [pid, model] = k.split("|");
+    const e = entry(k);
+    pending++; setStatus("Saving…", "wait");
+    fetch("/api/score", {method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({prompt_id:pid, model, ...e})})
+      .then(r => r.ok ? r : r.json().then(j => {throw new Error(j.error || r.status);}))
+      .then(() => { pending--; if(!pending) setStatus("Saved to scores.csv at " + new Date().toLocaleTimeString(), "ok"); })
+      .catch(err => { pending--; setStatus("SAVE FAILED: " + err.message + " — your last change is NOT in scores.csv", "err"); });
+  }
+
+  function renderBody(text){
+    const box = $("response");
+    box.className = "card response" + (raw ? " raw" : "");
+    if(raw || !window.marked){ box.textContent = text; return; }
+    let html = window.marked.parse(text);
+    if(window.DOMPurify) html = window.DOMPurify.sanitize(html);
+    else { box.textContent = text; return; }   // never inject unsanitised HTML
+    box.innerHTML = html;
+    box.querySelectorAll("a").forEach(a => { a.target = "_blank"; a.rel = "noopener noreferrer"; });
+  }
+
+  function render(){
+    const {p, m, k} = cur();
+    const e = entry(k);
+    // progress
+    let total = 0, done = 0;
+    data.prompts.forEach(pp => pp.order.forEach(mm => { total++; if(isDone(key(pp.id, mm))) done++; }));
+    $("progress").textContent = `${done}/${total} scored`;
+    $("barfill").style.width = (100*done/total) + "%";
+    // sidebar
+    $("plist").innerHTML = "";
+    data.prompts.forEach((pp, i) => {
+      const n = pp.order.filter(mm => isDone(key(pp.id, mm))).length;
+      const b = document.createElement("button");
+      b.className = (i === pi ? "cur " : "") + (n === 4 ? "done" : "");
+      b.innerHTML = `<span>${pp.id}</span><span class="cnt">${n}/4</span>`;
+      b.onclick = () => { pi = i; ri = 0; di = firstUnscored(); render(); };
+      $("plist").appendChild(b);
+    });
+    // prompt
+    $("prompt-label").textContent = `${p.id} — Prompt`;
+    $("prompt-text").textContent = p.text;
+    // tabs (blind: A–D)
+    $("tabs").innerHTML = "";
+    p.order.forEach((mm, i) => {
+      const t = document.createElement("button");
+      t.className = "tab" + (i === ri ? " cur" : "") + (isDone(key(p.id, mm)) ? " done" : "");
+      t.textContent = "Response " + "ABCD"[i];
+      t.onclick = () => { ri = i; di = firstUnscored(); render(); };
+      $("tabs").appendChild(t);
+    });
+    const sp = document.createElement("div"); sp.className = "spacer"; $("tabs").appendChild(sp);
+    const tg = document.createElement("button"); tg.className = "toggle";
+    tg.textContent = raw ? "Show rendered" : "Show raw text";
+    tg.onclick = () => { raw = !raw; render(); };
+    $("tabs").appendChild(tg);
+    renderBody(p.responses[m]);
+    // reveal only after all four dimensions are scored
+    $("reveal").innerHTML = isDone(k)
+      ? `Model: <b>${MODEL_LABELS[m]}</b>` : `Model hidden until all four scores are set (Response ${"ABCD"[ri]})`;
+    // dims
+    const wrap = $("dims"); wrap.innerHTML = "";
+    data.dims.forEach((d, i) => {
+      const div = document.createElement("div");
+      div.className = "dim" + (i === di ? " active" : "");
+      const sel = e[d];
+      div.innerHTML = `<div class="name">${DIM_LABELS[d]}<span>${sel ? sel + "/5" : "not set"}</span></div>
+        <div class="btns"></div><div class="desc"></div>`;
+      const btns = div.querySelector(".btns"), desc = div.querySelector(".desc");
+      const showDesc = n => { desc.textContent = n ? `${n}: ${data.rubric[d][n]}` : ""; };
+      for(let n = 1; n <= 5; n++){
+        const b = document.createElement("button");
+        b.textContent = n; if(sel === n) b.className = "sel";
+        b.onmouseenter = () => showDesc(n); b.onmouseleave = () => showDesc(sel);
+        b.onclick = ev => { ev.stopPropagation(); di = i; setScore(n); };
+        btns.appendChild(b);
+      }
+      showDesc(sel);
+      div.onclick = () => { di = i; render(); };
+      wrap.appendChild(div);
+    });
+    if(document.activeElement !== $("note")) $("note").value = e.note || "";
+  }
+
+  function firstUnscored(){
+    const {k} = cur(); const e = scores[k];
+    if(!e) return 0;
+    const i = data.dims.findIndex(d => !e[d]);
+    return i === -1 ? 0 : i;
+  }
+
+  function setScore(n){
+    const {k} = cur(); const e = entry(k);
+    e[data.dims[di]] = n;
+    if(n && di < data.dims.length - 1) di++;
+    save(k); render();
+  }
+
+  function move(delta){          // previous/next response, crossing prompts
+    ri += delta;
+    if(ri > 3){ if(pi < data.prompts.length - 1){ pi++; ri = 0; } else ri = 3; }
+    if(ri < 0){ if(pi > 0){ pi--; ri = 3; } else ri = 0; }
+    di = firstUnscored(); render();
+  }
+  function movePrompt(delta){
+    const np = Math.min(Math.max(pi + delta, 0), data.prompts.length - 1);
+    if(np !== pi){ pi = np; ri = 0; di = firstUnscored(); render(); }
+  }
+
+  document.addEventListener("keydown", ev => {
+    if(ev.ctrlKey || ev.metaKey || ev.altKey) return;
+    if(document.activeElement === $("note")){
+      if(ev.key === "Escape") $("note").blur();
+      return;
+    }
+    if(/^[1-5]$/.test(ev.key)) { setScore(+ev.key); ev.preventDefault(); }
+    else if(ev.key === "Backspace"){ const {k} = cur(); entry(k)[data.dims[di]] = null; save(k); render(); ev.preventDefault(); }
+    else if(ev.key === "ArrowDown"){ di = Math.min(di + 1, 3); render(); ev.preventDefault(); }
+    else if(ev.key === "ArrowUp"){ di = Math.max(di - 1, 0); render(); ev.preventDefault(); }
+    else if(ev.key === "ArrowRight"){ move(1); ev.preventDefault(); }
+    else if(ev.key === "ArrowLeft"){ move(-1); ev.preventDefault(); }
+    else if(ev.key === "]"){ movePrompt(1); }
+    else if(ev.key === "["){ movePrompt(-1); }
+    else if(ev.key.toLowerCase() === "r"){ raw = !raw; render(); }
+    else if(ev.key.toLowerCase() === "n"){ $("note").focus(); ev.preventDefault(); }
+  });
+
+  $("note").addEventListener("input", () => {
+    const {k} = cur(); entry(k).note = $("note").value;
+    setStatus("Unsaved note…", "wait");
+    clearTimeout(noteTimer); noteTimer = setTimeout(() => save(k), 600);
+  });
+  $("note").addEventListener("blur", () => { clearTimeout(noteTimer); const {k} = cur(); save(k); });
+
+  window.addEventListener("beforeunload", ev => { if(pending){ ev.preventDefault(); ev.returnValue = ""; } });
+
+  fetch("/api/data").then(r => r.json()).then(d => {
+    data = d; scores = d.scores;
+    $("plist-principles").innerHTML = "";
+    d.principles.forEach(t => { const li = document.createElement("li"); li.textContent = t.replace(/\*\*/g, ""); $("plist-principles").appendChild(li); });
+    // resume at the first response that is not fully scored
+    outer: for(let i = 0; i < d.prompts.length; i++)
+      for(let j = 0; j < 4; j++)
+        if(!isDone(key(d.prompts[i].id, d.prompts[i].order[j]))){ pi = i; ri = j; break outer; }
+    di = firstUnscored();
+    setStatus("Ready — scores save automatically", "ok");
+    render();
+  }).catch(() => setStatus("Could not load data. Is scorer.py running?", "err"));
+})();
+</script>
+</body>
+</html>
