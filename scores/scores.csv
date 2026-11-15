@@ -1,0 +1,32 @@
+prompt_id,model,accuracy,instruction_following,completeness,clarity,note
+P01,grok,5,5,5,5,No noticeable errors in any category.
+P01,chatgpt,5,5,5,5,No noticeable errors in any category.
+P01,gemini,5,5,5,5,No noticeable errors in any category.
+P01,claude,5,5,5,5,No noticeable errors in any category.
+P02,grok,5,5,5,5,No noticeable errors in any category.
+P02,chatgpt,5,4,5,5,"Loses 1 point in Instruction-Following as a line other than the two bullet points was included.
+No fault in any other categories."
+P02,gemini,5,5,5,5,No noticeable errors in any category.
+P02,claude,5,5,5,5,No noticeable errors in any category.
+P03,grok,5,5,5,5,No noticeable errors in any category.
+P03,chatgpt,4,5,5,5,"In the definition of Candidate Key, the word ""minimal"" is missing which is important for differentiating its definition from that of a Super Key. It loses one point in accuracy.
+No noticeable errors in any other category."
+P03,gemini,5,5,5,5,No noticeable errors in any category.
+P03,claude,5,5,5,5,No noticeable errors in any category.
+P04,grok,5,5,5,5,No noticeable errors in any category.
+P04,chatgpt,5,3,5,5,"Clear violation of ""one example"" instruction. It scores a 3 in Instruction-Following.
+No noticeable errors in any other category."
+P04,gemini,5,5,5,5,No noticeable errors in any category.
+P04,claude,5,5,5,5,No noticeable errors in any category.
+P05,grok,2,3,5,5,"Vietnam is not listed in the top 10 of either of the listed categories, so its inclusion is a factual error. It is the only country mentioned and on borderline of meeting the requirements so it scores a 2 on accuracy.
+
+The instructions say not to include countries that do not qualify, and to state that fewer than five qualify instead. So it gets a 3 in Instruction-Following.
+No noticeable errors in any other category."
+P05,chatgpt,3,3,5,5,"India is not listed anywhere within the top 10 of the annual real GDP growth in 2025, so its inclusion is a factual error, though ethiopia is correct so it scores a 3.
+
+The instructions say not to include countries that do not qualify, and to state that fewer than five qualify instead. So it gets a 3 in Instruction-Following.
+No noticeable errors in any other category."
+P05,gemini,4,5,5,5,"Could not confirm the 9.2 % real GDP growth so loses one point in accuracy.
+No noticeable errors in any other category."
+P05,claude,5,3,5,5,"No citations or sources given, despite ""cite your claims"". It also lists four bullets even though it says no country qualifies, which breaks ""one bullet point per qualifying country"". Gets a 3 in Instruction-Following.
+No noticeable errors in any other category."
