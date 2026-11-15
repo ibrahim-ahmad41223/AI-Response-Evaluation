@@ -6,9 +6,9 @@ Imagine a list (table) of kids in your class with columns like:
 ### Super Key
 Any group of columns that can uniquely identify one kid — even if it includes extra stuff you don’t really need.  
 Examples:  
-- Student Number alone
-- Seat Number alone (if every seat is different)
-- First Name + Last Name + Birthday
+- Student Number alone  
+- Seat Number alone (if every seat is different)  
+- First Name + Last Name + Birthday  
 - First Name + Last Name + Seat Number + Birthday (this works but has way more than needed)
 
 A super key just has to be unique; it doesn’t have to be the smallest possible.
@@ -16,8 +16,8 @@ A super key just has to be unique; it doesn’t have to be the smallest possible
 ### Candidate Key
 A **minimal** super key — the smallest set that still uniquely identifies a kid. You can’t remove any part of it without losing uniqueness.  
 Examples:  
-- Student Number (one column is enough)
-- Seat Number (if seats are unique)
+- Student Number (one column is enough)  
+- Seat Number (if seats are unique)  
 - First Name + Last Name (if no two kids share the exact same full name)
 
 These are the good, no-extra-stuff options.
@@ -26,8 +26,8 @@ These are the good, no-extra-stuff options.
 The **one candidate key** we officially choose as the main way to identify each kid.  
 In most classes, this would be the **Student Number**.  
 Rules for the primary key:  
-- It must be unique
-- It can’t be empty/blank
+- It must be unique  
+- It can’t be empty/blank  
 - We usually pick the simplest and most reliable one
 
 ### Composite Key
