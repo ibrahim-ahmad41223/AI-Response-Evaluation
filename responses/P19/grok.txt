@@ -1,0 +1,52 @@
+**Super key, candidate key, primary key, composite key, and surrogate key** are ways to uniquely pick out one row in a table (like one kid in a class list). Here’s a simple explanation using a class of kids.
+
+Imagine a list (table) of kids in your class with columns like:  
+**First Name**, **Last Name**, **Birthday**, **Seat Number**, **Student Number**.
+
+### Super Key
+Any group of columns that can uniquely identify one kid — even if it includes extra stuff you don’t really need.  
+Examples:  
+- Student Number alone
+- Seat Number alone (if every seat is different)
+- First Name + Last Name + Birthday
+- First Name + Last Name + Seat Number + Birthday (this works but has way more than needed)
+
+A super key just has to be unique; it doesn’t have to be the smallest possible.
+
+### Candidate Key
+A **minimal** super key — the smallest set that still uniquely identifies a kid. You can’t remove any part of it without losing uniqueness.  
+Examples:  
+- Student Number (one column is enough)
+- Seat Number (if seats are unique)
+- First Name + Last Name (if no two kids share the exact same full name)
+
+These are the good, no-extra-stuff options.
+
+### Primary Key
+The **one candidate key** we officially choose as the main way to identify each kid.  
+In most classes, this would be the **Student Number**.  
+Rules for the primary key:  
+- It must be unique
+- It can’t be empty/blank
+- We usually pick the simplest and most reliable one
+
+### Composite Key
+A key made of **two or more columns** working together.  
+Example: First Name + Last Name (you need both to be sure it’s the right kid).  
+If a table uses First Name + Last Name as its primary key, that primary key is also a composite key.
+
+### Surrogate Key
+A made-up, artificial ID that has nothing to do with the real data about the kid.  
+Example: The computer just gives every kid a number like 1, 2, 3, 4… or a long random code.  
+This number doesn’t come from their name, birthday, or seat — it’s just created to be a simple, unique label. Student Number is often a surrogate key.
+
+### Quick summary with the class example
+| Term            | Simple meaning                              | Class example                  |
+|-----------------|---------------------------------------------|--------------------------------|
+| Super key       | Anything that uniquely identifies           | Name + Birthday + Seat         |
+| Candidate key   | Smallest unique identifier                  | Student Number or Seat Number  |
+| Primary key     | The official chosen unique ID               | Student Number                 |
+| Composite key   | Made of 2+ columns                          | First Name + Last Name         |
+| Surrogate key   | Fake/made-up number just for identification | Auto-generated ID 001, 002…    |
+
+That’s it! Super keys are any unique combo, candidate keys are the clean minimal ones, the primary key is the one we pick, composite means “more than one column,” and surrogate means “we made this number up.”
