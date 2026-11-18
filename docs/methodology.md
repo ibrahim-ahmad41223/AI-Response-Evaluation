@@ -1,6 +1,6 @@
 # Methodology
 
-This document describes how the AI Response Evaluation Benchmark is designed and carried out. The project is ongoing, so this document describes the intended procedure and will be refined as the work progresses.
+This document describes how the AI Response Evaluation Benchmark was designed and carried out. All 30 prompts were submitted, all 120 responses were collected on 2026-11-13 and scored, and the results are summarised in [`analysis/final-analysis.md`](../analysis/final-analysis.md).
 
 ## 1. Project Overview
 
@@ -23,7 +23,7 @@ Four AI models are included in the benchmark:
 
 The benchmark is designed around 30 prompts, covering a range of task types and difficulty levels. Each prompt is stored as its own file in the `prompts/` directory and is identified by a zero-padded ID (`P01` through `P30`).
 
-The 30 prompts have been designed and finalised, but their individual files are still being populated. The benchmark is a work in progress, so not every prompt file contains its text yet.
+All 30 prompt files are populated. The prompts include factual questions, coding tasks, calculations, constrained-format writing, questions with false premises, and tasks that require the model to state what it cannot know or do.
 
 ## 4. Response Collection Procedure
 
@@ -58,7 +58,20 @@ Each dimension is scored independently on a scale from 1 to 5. The full score de
 
 Each response is evaluated individually against the same rubric. The evaluator reads the prompt and a single response, then assigns a 1–5 score for each of the four dimensions according to the definitions in `scores/rubric.md`.
 
-Scores are recorded in `scores/scores.csv`. Notes and conclusions drawn from the scores belong in `analysis/final-analysis.md`.
+Scores are recorded in `scores/scores.csv`, with one row per response. Notes and conclusions drawn from the scores are in `analysis/final-analysis.md`.
+
+In practice the scoring ran in three steps:
+
+1. **Initial scoring.** The evaluator scored each response using the local scoring tool (`tools/scorer.py`), which shows one response at a time with model names hidden until all four scores are set and writes each score straight to `scores/scores.csv`.
+2. **Rubric review.** The scores were then checked against `scores/rubric.md` by the evaluator with AI assistance (Claude), and the evaluator confirmed the results. A score was changed only when a specific rubric definition applied. The AI assistant also scored P16–P30 under the same rubric, which the evaluator then reviewed. Responses were read in full, and code, arithmetic and word limits were checked where possible.
+3. **Notes.** Every score below 5 has a note in the `note` column explaining the deduction.
+
+Scoring conventions:
+
+- Formatting damage introduced by copying responses from the websites (flattened code, image or citation markup, tab-separated tables) is not counted against the model. Where the evaluator could supply the original text, the saved response was restored (ChatGPT, P15).
+- The same defect is scored the same way across prompts where possible, for example a candidate-key definition that omits "minimal".
+- Titles are not counted toward word limits unless the prompt says so.
+- Naming a specific source for a claim counts as a citation, even without a link.
 
 ## 7. Limitations
 
