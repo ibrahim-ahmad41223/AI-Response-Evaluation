@@ -35,10 +35,10 @@ All 30 prompt files are populated. The prompts include factual questions, coding
    ```
    responses/
    └── P01/
-       ├── gemini.txt
-       ├── chatgpt.txt
-       ├── grok.txt
-       └── claude.txt
+       ├── gemini.md
+       ├── chatgpt.md
+       ├── grok.md
+       └── claude.md
    ```
 
 Preserving responses unedited ensures that scoring reflects what each model actually produced.

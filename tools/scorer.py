@@ -65,7 +65,7 @@ def load_prompts():
         pid = p.stem
         responses = {}
         for model in MODELS:
-            f = ROOT / "responses" / pid / f"{model}.txt"
+            f = ROOT / "responses" / pid / f"{model}.md"
             responses[model] = read_text(f) if f.exists() else ""
         order = MODELS[:]
         random.Random(pid).shuffle(order)  # fixed blind order per prompt

@@ -31,7 +31,7 @@ The gaps are small and come from a single human evaluator (with AI-assisted rubr
 | Path | Contents |
 |---|---|
 | `prompts/` | The 30 prompts, `P01.txt` to `P30.txt`. |
-| `responses/` | Each model's response, saved exactly as returned: `responses/Pxx/{grok,chatgpt,gemini,claude}.txt`. `responses/collection-log.csv` records the model, access method, settings and date for every response. |
+| `responses/` | Each model's response, saved exactly as returned: `responses/Pxx/{grok,chatgpt,gemini,claude}.md`. `responses/collection-log.csv` records the model, access method, settings and date for every response. |
 | `scores/rubric.md` | The 1–5 definitions for each dimension and the scoring principles. |
 | `scores/scores.csv` | One row per response: four scores and a note explaining every deduction. |
 | `analysis/final-analysis.md` | Results, error patterns, scoring decisions and limitations. |
@@ -47,5 +47,5 @@ If you edit `scores/scores.csv` by hand, restart the tool afterwards: it loads t
 ## Notes
 
 - Scores were produced by the evaluator together with an AI assistant (Claude); the evaluator reviewed and approved every final score. See `docs/methodology.md`.
-- Responses are stored verbatim, including any copy-paste artifacts from the websites (such as image links). These were not counted against the models.
+- Responses are stored verbatim as `.md` files, so GitHub renders their formatting. They include any copy-paste artifacts from the websites (such as broken image links, doubled backslashes in LaTeX, or unfenced code that renders as headings), which were deliberately left unedited and not counted against the models.
 - Results reflect the models only as they behaved on the collection date.
