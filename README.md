@@ -24,7 +24,7 @@ Mean score across the four dimensions (30 responses per model, scale 1–5):
 | Grok | 4.91 | 25 / 30 |
 | ChatGPT | 4.88 | 22 / 30 |
 
-The gaps are small and come from a single evaluator and a limited sample, so these numbers are not a ranking of which model is best. See [`analysis/final-analysis.md`](analysis/final-analysis.md) for the per-dimension breakdown, error patterns and limitations.
+The gaps are small and come from a single human evaluator (with AI-assisted rubric review) and a limited sample, so these numbers are not a ranking of which model is best. See [`analysis/final-analysis.md`](analysis/final-analysis.md) for the per-dimension breakdown, error patterns and limitations.
 
 ## Repository layout
 
@@ -46,5 +46,6 @@ If you edit `scores/scores.csv` by hand, restart the tool afterwards: it loads t
 
 ## Notes
 
+- Scores were produced by the evaluator together with an AI assistant (Claude); the evaluator reviewed and approved every final score. See `docs/methodology.md`.
 - Responses are stored verbatim, including any copy-paste artifacts from the websites (such as image links). These were not counted against the models.
 - Results reflect the models only as they behaved on the collection date.

@@ -45,13 +45,13 @@ These patterns come from the notes in the CSV. Each is based on a handful of res
 
 ## 4. Scoring decisions worth knowing
 
-- Scores were set by one evaluator and checked against the rubric with AI assistance. Scores were changed only where a specific rubric definition applied, with the reason recorded in the `note` column. Every score below 5 has a note.
+- Scores were produced by the evaluator together with an AI assistant (Claude), which proposed ratings and changes tied to specific rubric definitions. The evaluator reviewed and approved every final score. The reason for every score below 5 is recorded in the `note` column.
 - Formatting damage from copying responses off the websites (flattened code, image markup, tab-separated tables) was not counted against the model. One ChatGPT response (P15) was restored to its original code block after the evaluator supplied it.
 - The same defect was scored consistently across prompts where possible (for example, the missing "minimal" in candidate-key definitions, and absent citations when the prompt required them).
 
 ## 5. Limitations
 
-- **Single evaluator.** All scores were set by one evaluator, with an AI-assisted rubric review. They have not been independently verified.
+- **Single evaluator, AI-assisted.** The evaluator is the only human who approved the scores; the AI assistant contributed ratings and review but did not make final decisions. The scores have not been independently verified.
 - **Narrow score range.** Most scores are 5, so the benchmark separates models only through a small number of deductions, and a single changed score can alter the ordering. The means above should not be treated as precise.
 - **Small sample.** Thirty prompts cannot represent every task type, and each model answered each prompt once, so response variability is not captured.
 - **Settings are not identical.** The models were accessed through websites with different defaults (Gemini 4 Hydrogen on Everyday Help, Claude Sonnet 5.5 on Low effort, Grok on Fast, ChatGPT on its default). Features such as web search or account integrations may have differed. For example, Gemini's P27 answer mentions searching the user's Gmail and Drive.

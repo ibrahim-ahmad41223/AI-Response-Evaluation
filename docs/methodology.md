@@ -62,8 +62,8 @@ Scores are recorded in `scores/scores.csv`, with one row per response. Notes and
 
 In practice the scoring ran in three steps:
 
-1. **Scoring.** Scores were entered through the local scoring tool (`tools/scorer.py`), which shows one response at a time with model names hidden until all four scores are set and writes each score straight to `scores/scores.csv`.
-2. **AI-assisted rubric review.** The scores were checked against `scores/rubric.md` with AI assistance (Claude), and the evaluator reviewed and confirmed the results. A score was changed only when a specific rubric definition applied. Responses were read in full, and code, arithmetic and word limits were checked where possible.
+1. **Scoring.** Scores were entered through the local scoring tool (`tools/scorer.py`), which shows one response at a time with model names hidden until all four scores are set and writes each score straight to `scores/scores.csv`. Ratings were contributed by both the evaluator and an AI assistant (Claude).
+2. **AI-assisted rubric review.** The AI assistant checked scores against `scores/rubric.md`, proposed changes and wrote notes, always tied to a specific rubric definition. Every final score and note was reviewed and approved by the evaluator, who made the final decision. Responses were read in full, and code, arithmetic and word limits were checked where possible.
 3. **Notes.** Every score below 5 has a note in the `note` column explaining the deduction.
 
 Scoring conventions:
@@ -78,6 +78,6 @@ Scoring conventions:
 - **Model updates.** Providers update their models and products over time, so the same prompt may produce a different response at a later date. Results reflect the models only at the time each response was collected.
 - **Differences in model settings.** Models may be accessed through different interfaces and may use different default settings, system instructions, or features (such as web search). These differences may affect responses and may not be fully controllable or visible.
 - **Subjective judgment.** Although a defined rubric is used, assigning scores involves human judgment, particularly for clarity and completeness. Different evaluators could reasonably assign different scores.
-- **Single evaluator.** All scores were set by one evaluator, with an AI-assisted rubric review. They have not been independently verified by additional evaluators.
+- **Single evaluator, AI-assisted.** The evaluator is the only human who approved the scores; the AI assistant contributed ratings and review but did not make final decisions. The scores have not been independently verified by additional evaluators.
 - **Limited sample size.** A benchmark of 30 prompts cannot represent every task or domain, so findings should not be generalised beyond the prompts tested.
 - **Response variability.** A model may return different answers to the same prompt on different attempts. Each prompt is evaluated on the response collected, which may not be representative of every possible output.
