@@ -78,3 +78,72 @@ P15,gemini,5,5,5,5,No errors in any categories.
 P15,claude,3,5,5,5,"Latest Model of Gemini as of Nov 13 was Gemini Hydrogen 4. So thats a losing point in accuracy.
 Reviewer addition: Hydrogen was GA on Nov 12 and Gemini 4 Carbon (Nov 10) was also newer, but Claude picked the older Gemini 4 Argon (Oct 13) and built its model table and script around it. One of the two models the prompt asks to identify is wrong, which is central to the task, so 3 in Accuracy.
 No noticeable errors in any other category."
+P16,grok,5,5,5,5,No errors in any categories.
+P16,chatgpt,4,5,5,5,"The sample output says `search(20)` prints ""Element found at index 3"", but the code prints the array index `i`, which is 1 for that run (the elements wrap around the array). The stated output does not match the code. Minor imprecision, so 4 in Accuracy.
+No noticeable errors in any other category."
+P16,gemini,5,5,5,5,No errors in any categories.
+P16,claude,5,5,5,5,No errors in any categories.
+P17,grok,5,5,5,5,No errors in any categories.
+P17,chatgpt,5,5,5,5,No errors in any categories.
+P17,gemini,5,5,5,5,No errors in any categories.
+P17,claude,5,5,5,5,No errors in any categories.
+P18,grok,5,5,5,5,No errors in any categories.
+P18,chatgpt,5,5,5,5,No errors in any categories.
+P18,gemini,5,5,5,5,No errors in any categories.
+P18,claude,3,5,5,5,"The z-score cross-check is wrong: the sample standard deviation is about 25.95, not 28.5, so z for 100 is about 2.13 (not 1.93) and for 89 about 1.70 (not 1.55). The claim that both are below ""even the stricter 2"" is therefore false, since 100 is above |z| > 2. The mean, the IQR calculation and the no-outlier conclusion are correct, but the wrong SD and the false statement built on it are a notable error, so 3 in Accuracy.
+No noticeable errors in any other category."
+P19,grok,5,5,5,5,No errors in any categories.
+P19,chatgpt,4,5,5,5,"Defines a candidate key as ""any column that could become the primary key because it uniquely identifies each student"" without saying it must be minimal (no unnecessary columns), which is what separates it from a super key. Minor imprecision, so 4 in Accuracy.
+No noticeable errors in any other category."
+P19,gemini,5,5,5,5,No errors in any categories.
+P19,claude,5,5,5,5,No errors in any categories.
+P20,grok,5,5,5,5,No errors in any categories.
+P20,chatgpt,4,4,5,5,"Says the student discussed ""pointers"", which is not in the summary (it lists arrays, functions, recursion, linked lists, stacks, queues, sorting). It also says the student ""practiced"" sorting and Boolean simplification, but the summary only says practice was on programming and database questions. This goes against ""use only evidence from the summary"" and ""avoid unsupported assumptions"". Minor deviation, so 4 in Instruction-Following, and the misstated evidence is a minor imprecision, so 4 in Accuracy.
+No noticeable errors in any other category."
+P20,gemini,5,3,5,5,"Under ""Weaknesses & Gaps (Supported by Evidence)"" it lists topics that are simply absent from the summary (trees, graphs, hash tables, STL, normalization, ACID, testing, version control) as gaps, bringing in outside expectations rather than evidence. It also assumes what the dry runs involved (""tracing pointer movements"", ""intermediate query results""), and calls the C++ work ""procedural/object-oriented"" and the depth ""introductory"", none of which the summary states. This breaks ""use only evidence from the summary"" and ""avoid unsupported assumptions"" while the main task is still fulfilled, so 3 in Instruction-Following.
+No noticeable errors in any other category."
+P20,claude,5,5,5,5,No errors in any categories.
+P21,grok,5,5,5,5,No errors in any categories.
+P21,chatgpt,5,5,5,5,No errors in any categories.
+P21,gemini,5,5,5,5,No errors in any categories.
+P21,claude,5,5,5,5,No errors in any categories.
+P22,grok,5,5,5,5,No errors in any categories.
+P22,chatgpt,5,5,5,5,No errors in any categories.
+P22,gemini,5,5,5,5,No errors in any categories.
+P22,claude,5,5,5,5,No errors in any categories.
+P23,grok,5,5,5,5,No errors in any categories.
+P23,chatgpt,5,5,5,5,No errors in any categories.
+P23,gemini,5,5,5,5,No errors in any categories.
+P23,claude,5,5,5,5,No errors in any categories.
+P24,grok,4,5,5,5,"In the ""What you might be thinking of"" list, candidate keys are defined as ""any set of columns that could uniquely identify rows"", leaving out that they must be minimal. As in P03, that is what separates a candidate key from a super key. Minor imprecision, so 4 in Accuracy. The main correction (primary keys do uniquely identify records) is right.
+No noticeable errors in any other category."
+P24,chatgpt,5,5,5,5,No errors in any categories.
+P24,gemini,5,5,5,5,No errors in any categories.
+P24,claude,5,5,5,5,No errors in any categories.
+P25,grok,5,5,5,5,No errors in any categories.
+P25,chatgpt,5,5,3,5,"Section 3, ""Salary differences by experience"", only defines the experience levels (0-1, 1-3, 3-6, 6+ years) and gives no salary figures for any of them, even though the prompt asks to distinguish between experience levels. It also gives no typical overall range, only isolated OpenPay records. Important information is missing, so 3 in Completeness. Sources, limitations and the role breakdown are covered.
+No noticeable errors in any other category."
+P25,gemini,5,5,5,5,No errors in any categories.
+P25,claude,5,5,5,5,No errors in any categories.
+P26,grok,5,5,5,5,No errors in any categories.
+P26,chatgpt,5,5,5,5,No errors in any categories.
+P26,gemini,5,5,5,5,No errors in any categories.
+P26,claude,5,5,5,5,No errors in any categories.
+P27,grok,5,5,5,5,No errors in any categories.
+P27,chatgpt,5,5,5,5,No errors in any categories.
+P27,gemini,5,5,5,5,No errors in any categories.
+P27,claude,5,5,5,5,No errors in any categories.
+P28,grok,5,5,5,5,No errors in any categories.
+P28,chatgpt,5,5,5,5,No errors in any categories.
+P28,gemini,5,5,5,5,No errors in any categories.
+P28,claude,5,5,5,5,No errors in any categories.
+P29,grok,5,5,5,5,No errors in any categories.
+P29,chatgpt,5,5,5,5,No errors in any categories.
+P29,gemini,5,5,5,5,No errors in any categories.
+P29,claude,5,5,5,5,No errors in any categories.
+P30,grok,5,3,5,5,"No sources or citations at all, despite ""Support factual claims with reliable sources and citations"". Gets a 3 in Instruction-Following. Three paragraphs, capital first letters and the word limit are all followed.
+No noticeable errors in any other category."
+P30,chatgpt,5,5,5,5,No errors in any categories.
+P30,gemini,5,5,5,5,No errors in any categories.
+P30,claude,4,5,5,5,"Lists Italy in the group opposing France, Russia and Britain in 1914, but Italy stayed neutral in 1914 and joined the other side in 1915. It also says both groups ""had promised to defend each other"", which does not describe Britain's entente. Minor imprecision for a beginner account, so 4 in Accuracy.
+No noticeable errors in any other category."
