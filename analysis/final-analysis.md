@@ -21,6 +21,8 @@ The gap between the highest and lowest mean (4.96 vs 4.88) is 0.08 of a point. I
 
 ## 2. Where points were lost
 
+![Stacked bar chart of points lost per model, split by scoring dimension: Gemini 5, Claude 9, Grok 11, ChatGPT 14.](points-lost.svg)
+
 Almost all deductions fall in accuracy and instruction-following. Completeness lost a point once (ChatGPT, P25) and clarity once (Claude, P09). Nobody lost a point in clarity otherwise.
 
 | Model | Deductions | Prompts |
