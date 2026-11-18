@@ -30,3 +30,51 @@ P05,gemini,4,5,5,5,"Could not confirm the 9.2 % real GDP growth so loses one poi
 No noticeable errors in any other category."
 P05,claude,5,3,5,5,"No citations or sources given, despite ""cite your claims"". It also lists four bullets even though it says no country qualifies, which breaks ""one bullet point per qualifying country"". Gets a 3 in Instruction-Following.
 No noticeable errors in any other category."
+P06,grok,3,5,5,5,"The core answer (right operand is not evaluated) is correct, but both code examples are backwards. In `ptr != NULL || *ptr == 0`, a NULL ptr makes the left side false, so `*ptr` IS evaluated (null dereference). Same for `i < n || a[i] == key` when i >= n (out-of-bounds read). The comments claiming the right side is skipped are wrong, and a correct guard needs the opposite test (e.g. `ptr == NULL || ...`). Notable error, so 3 in Accuracy.
+No noticeable errors in any other category."
+P06,chatgpt,5,5,5,5,No errors in any categories.
+P06,gemini,5,5,5,5,No errors in any categories.
+P06,claude,5,5,5,5,No errors in any categories.
+P07,grok,5,5,5,5,No errors in any categories.
+P07,chatgpt,5,5,5,5,No errors in any categories.
+P07,gemini,4,5,5,5,"Explanation says a failed read would leave `day` uninitialized, but since C++11 a failed extraction sets it to 0 (it would simply fall into `default`). Minor imprecision in the explanation; the code itself is correct.
+No noticeable errors in any other category."
+P07,claude,5,5,5,5,No errors in any categories.
+P08,grok,5,5,5,5,No errors in any categories.
+P08,chatgpt,5,5,5,5,No errors in any categories.
+P08,gemini,5,5,5,5,No errors in any categories.
+P08,claude,5,5,5,5,No errors in any categories.
+P09,grok,5,5,5,5,No errors in any categories.
+P09,chatgpt,5,5,5,5,No errors in any categories.
+P09,gemini,4,5,5,5,"Lists ""Lack of Formal Mutual-Defense Pacts"" as a reason a world war has been prevented, which is misleading: NATO's Article 5 is a formal mutual-defense pact (the same answer mentions Moscow-NATO confrontation), and Russia and North Korea signed a mutual-defense treaty in 2024. Minor imprecision, so 4 in Accuracy.
+No noticeable errors in any other category."
+P09,claude,5,5,5,4,"Opening repeats itself (""No government has declared one"" / ""No government has declared a third world war"") and includes an unexplained reference to ""one search result"" about a 2042-2047 war that the reader cannot see. Minor awkwardness, so 4 in Clarity.
+No noticeable errors in any other category."
+P10,grok,5,5,5,5,No errors in any categories.
+P10,chatgpt,5,5,5,5,No errors in any categories.
+P10,gemini,5,5,5,5,No errors in any categories.
+P10,claude,4,5,5,5,"The self-reported ""(40 words)"" is wrong: the summary is 46 words. It is still under the 50-word limit, so the instruction is met, but the incorrect count is a minor factual imprecision.
+No noticeable errors in any other category."
+P11,grok,5,5,5,5,No errors in any categories.
+P11,chatgpt,5,5,5,5,No errors in any categories.
+P11,gemini,5,5,5,5,No errors in any categories.
+P11,claude,5,5,5,5,No errors in any categories.
+P12,grok,5,5,5,5,No errors in any categories.
+P12,chatgpt,5,5,5,5,No errors in any categories.
+P12,gemini,5,5,5,5,No errors in any categories.
+P12,claude,5,5,5,5,No errors in any categories.
+P13,grok,5,5,5,5,No errors in any categories.
+P13,chatgpt,5,5,5,5,No errors in any categories.
+P13,gemini,5,5,5,5,No errors in any categories.
+P13,claude,5,5,5,5,No errors in any categories.
+P14,grok,5,5,5,5,No errors in any categories.
+P14,chatgpt,5,5,5,5,No errors in any categories.
+P14,gemini,5,5,5,5,No errors in any categories.
+P14,claude,5,5,5,5,No errors in any categories.
+P15,grok,4,5,5,5,"Model identification is correct, but two of the five sample questions are flawed: Q4 says ""first human powered flight achieved by the Wright brothers"" (their Flyer was engine-powered; human-powered flight is something else) and Q5's ""year officially designated"" is ambiguous (1908 selected / 1913 named / 1927 parliament moved). Minor imprecision, so 4 in Accuracy.
+No noticeable errors in any other category."
+P15,chatgpt,5,5,5,5,No errors in any categories.
+P15,gemini,5,5,5,5,No errors in any categories.
+P15,claude,3,5,5,5,"Latest Model of Gemini as of Nov 13 was Gemini Hydrogen 4. So thats a losing point in accuracy.
+Reviewer addition: Hydrogen was GA on Nov 12 and Gemini 4 Carbon (Nov 10) was also newer, but Claude picked the older Gemini 4 Argon (Oct 13) and built its model table and script around it. One of the two models the prompt asks to identify is wrong, which is central to the task, so 3 in Accuracy.
+No noticeable errors in any other category."
